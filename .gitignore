@@ -1,0 +1,9 @@
+# FileDirs
+otherResources/
+main.build/
+main.dist/
+__pycache__/
+
+# Setting files
+/config.json
+/test.py
