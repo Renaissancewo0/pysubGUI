@@ -60,9 +60,9 @@ class BilingualText(Sequence):
         keys = set(jpDict.keys()) | set(cnDict.keys())
         for key in sorted(keys, key = lambda x: x[0]):
             jp = jpDict.get(key, '')
-            jp = re.sub(r'\{.+\}', r'', jp)
+            jp = re.sub(r'\{.+?\}', r'', jp)
             cn = cnDict.get(key, '')
-            cn = re.sub(r'\{.+\}', r'', cn)
+            cn = re.sub(r'\{.+?\}', r'', cn)
             self.contents.append([jp, cn])
 
     def load_from_file(self, path: Path):

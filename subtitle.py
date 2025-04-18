@@ -73,7 +73,6 @@ class ASSReader(Subtitle):
         self.styles = re.findall(r'Style: (.+?),', self.raw_contents)
 
     def pick(self, styles: str) -> None:
-        print(styles)
         self.styles = styles
         cn = 0
         jp = 0
