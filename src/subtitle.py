@@ -90,7 +90,7 @@ class ASSReader(Subtitle):
             # if results := re.search(self.timestamp, line):
             #     start, end, style, text = results.groups()
             try:
-                _, start, end, style, *_, text = line.split(',')
+                _, start, end, style, *_, text = line.split(',', maxsplit = 10)
                 # Write the text, along with the timeline, into the dictionary specified by style
                 if (stylelist := self.__dict__.get(style)) is not None:
                     line = Timeline(start, end, text)
