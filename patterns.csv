@@ -149,7 +149,8 @@
 1,“,「,Quote marks
 1,”,」,
 1,\.\.\.,…,Three dots to ellipsis
-1,[《》＜＞｟｠。➡],,Redundant punctuation marks
+1,[《》＜＞｟｠。➡→],,Redundant punctuation marks
+1,^.*fscy.*$,,Ruby in ass
 1,\{.*?\},,
 1,（.*?）,,Contents in parentheses
 1,<.*?>,,
@@ -165,12 +166,8 @@
 1,&nbsp;,　,
 1,\\N,　,
 1,⸺,,
-1,♬,,Music notes
-1,♪,,
-1,🗧,,
-1,⚟,,
-1,🔊,,
-1,📱,,
+1,[♬♪],,Music notes
+1,[🗧⚟🔊📱],,
 1,^～$,,Single-line wave lines
 1,^\s+,,blank lines and leading spaces
 1, ,　,Replace half-width spaces to full-width ones
