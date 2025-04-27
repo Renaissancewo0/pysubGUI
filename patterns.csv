@@ -150,7 +150,7 @@
 1,”,」,
 1,\.\.\.,…,Three dots to ellipsis
 1,[《》＜＞｟｠。➡→],,Redundant punctuation marks
-1,^.*fscy.*$,,Ruby in ass
+1,^.*\\fscy\d+.*$,,Ruby in ass
 1,\{.*?\},,
 1,（.*?）,,Contents in parentheses
 1,<.*?>,,
