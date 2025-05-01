@@ -29,9 +29,3 @@ class MkvSubExtractor:
     def extract_subtitle(self, track_id, outputPath: Path):
         subprocess.run([MKV_EXTRACT, self.path, 'tracks', f"{track_id}:{str(outputPath)}"])
 
-
-if __name__ == '__main__':
-    path = r"E:\Renaissance\翻译相关\KitaujiSub_TextProcessor\pysubGUI\test_files\The.Apothecary.Diaries.S02E14.The.Dancing.Ghost.1080p.NF.WEB-DL.AAC2.0.H.264-VARYG.mkv"
-    mkv = MkvSubExtractor(path)
-    with open('test_files\\Kusuriya S02E14.json', 'w', encoding = 'utf-8') as fp:
-        json.dump(mkv.subTracks, fp, indent = 4, ensure_ascii = False)

@@ -175,3 +175,4 @@ class MainWindow(QWidget):
         self.bilingualTable = BilingualTable(self)
         self.mainLayout.addWidget(self.bilingualTable)
         self.mainLayout.setCurrentWidget(self.bilingualTable)
+

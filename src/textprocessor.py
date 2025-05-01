@@ -120,15 +120,3 @@ class BilingualText(Sequence):
             sheet.append([jp, cn, comment])
             workbook.save(self.outputPath)
             
-
-if __name__ == '__main__':
-    # path = Path(r'E:\Renaissance\翻译相关\KitaujiSub_TextProcessor\pysubGUI\test_files\[KitaujiSub] Kusuriya no Hitorigoto - 37.chs_jp.ass')
-    # sub = Subtitle(path)
-    # sub.pick('Text - CN', 'Text - JP')
-    path = Path(r'E:\Renaissance\翻译相关\KitaujiSub_TextProcessor\pysubGUI\test_files\Example_TXT.txt')
-    biling = BilingualText()
-    biling.load_from_file(path)
-    for line in biling.contents:
-        print(line)
-    # out = Path(r'E:\Renaissance\翻译相关\KitaujiSub_TextProcessor\pysubGUI\test_files\Example_TXT.xlsx')
-    # biling.write(out)

@@ -69,8 +69,17 @@ class ASSReader(Subtitle):
         super().__init__(path)
 
     def parse(self) -> None:
-        # For ASS files, get all the existing styles. Waiting for a pick() method to dump them into self.contents.
-        self.styles = re.findall(r'Style: (.+?),', self.raw_contents)
+        # For ASS files, search for V4+ Styles part and Events part
+        for part in  self.raw_contents.split('\n\n'):
+            match part.split('\n')[0]:
+                case '[V4+ Styles]':
+                    self.stylelist = part
+                case '[Events]':
+                    self.events = part
+                case _:
+                    pass
+        # Get all the existing styles. Waiting for a pick() method to dump them into self.contents.
+        self.styles = re.findall(r'Style: (.+?),', self.stylelist)
 
     def pick(self, styles: str) -> None:
         self.styles = styles
@@ -85,7 +94,7 @@ class ASSReader(Subtitle):
                 cn += 1
         self.bilingual = bool(cn * jp)
         
-        lines = self.raw_contents.split('\n\n')[-1].split('\n')[2:]
+        lines = self.events.split('\n')[2:]
         for line in lines:
             # if results := re.search(self.timestamp, line):
             #     start, end, style, text = results.groups()
@@ -161,10 +170,3 @@ class VTTReader(SRTReader):
     def __init__(self, path) -> None:
         super().__init__(path)
 
-
-if __name__ == '__main__':
-    path = Path(r'E:\Renaissance\翻译相关\KitaujiSub_TextProcessor\pysubGUI\test_files\[KitaujiSub] Kusuriya no Hitorigoto - 37.chs_jp.ass')
-    x = Subtitle(path)
-    x.pick(['Text - CN', 'Text - JP'])
-    c = x.cast2BilingualText()
-    print(c.jp)

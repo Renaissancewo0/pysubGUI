@@ -97,5 +97,3 @@ class Time:
         units = [3_600_000, 60_000, 1_000, 1]
         return sum(map(operator.mul, map(int, time), units))
 
-if __name__ == '__main__':
-    pass
