@@ -158,6 +158,8 @@ class SRTReader(Subtitle):
         for line in lines:
             for pattern in patterns:
                 line = re.sub(pattern, '', line)
+            if not line:
+                line = '　'
             striped.append(line)
         # Case for multiple speakers
         if striped[0][0] in ('(', '（') and functools.reduce(operator.eq, (line[0] for line in striped)):
