@@ -69,9 +69,7 @@ class MkvListWidget(QListWidget):
         timer = QTimer()
         timer.setInterval(200)
         def check():
-            print('Checking')
             if self.mainWindow.path.exists():
-                print('Stop')
                 timer.stop()
         timer.timeout.connect(check)
         timer.start()    

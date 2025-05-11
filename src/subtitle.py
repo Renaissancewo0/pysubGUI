@@ -138,13 +138,15 @@ class SRTReader(Subtitle):
     def merge_lines(lines: list[Timeline]) -> list[Timeline]:
         isContinuous = lambda x, y: x.end == y.start
         flags = [isContinuous(*pair) for pair in itertools.pairwise(lines)]
+
         idx = 0
+        merged = []
         for flag, counts in itertools.groupby(flags):
             count = len(list(counts))
             if flag:
-                lines[idx:idx+count+1] = [lines[idx].merge(lines[idx+count])]
+                merged.append(lines[idx].merge(lines[idx+count]))
             idx += count
-        return lines
+        return merged
 
     @staticmethod
     def tackleMultilines(text: str) -> str:
