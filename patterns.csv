@@ -169,6 +169,7 @@
 1,[♬♪],,Music notes
 1,[🗧⚟🔊📱모],,
 1,^～$,,Single-line wave lines
+1,・～,,
 1,^\s+,,blank lines and leading spaces
 1, ,　,Replace half-width spaces to full-width ones
 1,　+,　,

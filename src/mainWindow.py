@@ -1,7 +1,5 @@
 from pathlib import Path
-from status import Status, check_config_json
-check_config_json()
-
+from config import Status
 from functionalWidgets import (
     MkvListWidget, SubtitleDisplay, BilingualTable
 )

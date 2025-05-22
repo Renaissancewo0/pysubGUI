@@ -1,20 +1,21 @@
 import subprocess
 import json
 from pathlib import Path
+from config import read_config
 
-from readconfig import config
-MKV_MERGE = f'{config["mkvtoolnix"]}\\mkvmerge'
-MKV_EXTRACT = f'{config["mkvtoolnix"]}\\mkvextract'
 
 class MkvSubExtractor:
     def __init__(self, path: Path):
+        self.config = read_config()
+        self.merge = f'{self.config["mkvtoolnix"]}\\mkvmerge'
+        self.extract = f'{self.config["mkvtoolnix"]}\\mkvextract'
+        
         self.path = Path(path)
         self.read_sub_tracks()
-        # For display cmd lines to other window
 
     def read_sub_tracks(self):
         result = subprocess.run(
-            [MKV_MERGE, self.path, '-i', '-F', 'json'],
+            [self.merge, self.path, '-i', '-F', 'json'],
             stdout = subprocess.PIPE,
             stderr = subprocess.PIPE,
             text = True,
@@ -27,5 +28,5 @@ class MkvSubExtractor:
         return self.subTracks[track]['id']
 
     def extract_subtitle(self, track_id, outputPath: Path):
-        subprocess.run([MKV_EXTRACT, self.path, 'tracks', f"{track_id}:{str(outputPath)}"])
+        subprocess.run([self.extract, self.path, 'tracks', f"{track_id}:{str(outputPath)}"])
 

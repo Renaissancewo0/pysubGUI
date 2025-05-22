@@ -1,7 +1,7 @@
 import io
 from contextlib import redirect_stdout
 
-from status import Status
+from config import Status
 from mkvextractor import MkvSubExtractor
 from subtitle import Subtitle
 from textprocessor import TextProcessor, BilingualText

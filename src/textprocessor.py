@@ -1,16 +1,11 @@
 import re
-import functools
 from pathlib import Path
 from collections.abc import Sequence
-
 import openpyxl
-from readconfig import config
 
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from subtitle import ASSReader
-
-PATTERNS = config['patterns']
 
 class TextProcessor:
     def __init__(self, raw_text: str) -> None:
@@ -19,7 +14,7 @@ class TextProcessor:
 
     @staticmethod
     def process(text) -> str:
-        with open(PATTERNS, 'r', encoding = 'utf-8-sig') as entries:
+        with open('patterns.csv', 'r', encoding = 'utf-8-sig') as entries:
             for entry in entries:
                 flag, p, rep = entry.split(',')[:3]
                 if int(flag):
