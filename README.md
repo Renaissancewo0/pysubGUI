@@ -8,5 +8,4 @@
 # 注意事项
 1. GUI实现基于PySide6，对电子表格的读写基于openpyxl。二者均可用pip安装。
 2. 双语ASS文件字幕样式必须包含CN、JP字样才能识别。
-3. 第一次运行时会要求MKVToolNix文件夹及patterns.csv路径，若该路径发生更改，可自行修改运行目录下生成的config.json文件
-4. Release的执行文件由nuitka打包，不保证及时更新
+3. Release的执行文件由nuitka打包，不保证及时更新.
