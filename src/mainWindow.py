@@ -1,7 +1,7 @@
 from pathlib import Path
 from config import Status
 from functionalWidgets import (
-    MkvListWidget, SubtitleDisplay, BilingualTable
+    MkvListWidget, SubtitleDisplay, BilingualTable, InputFileLineEdit
 )
 from PySide6.QtWidgets import (
     QApplication, QWidget, QSpacerItem, QSizePolicy,
@@ -27,7 +27,7 @@ class MainWindow(QWidget):
         # Create widgets for reading input filename
         toplayout = QHBoxLayout()
         label = QLabel('读取文件路径')
-        self.inputFile = QLineEdit()
+        self.inputFile = InputFileLineEdit(self)
         inputFileButton = QPushButton('浏览')
         inputFileButton.setFixedSize(80, 24)
         inputFileButton.clicked.connect(self.readInputFile)

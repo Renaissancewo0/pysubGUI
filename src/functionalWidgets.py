@@ -9,7 +9,7 @@ from textprocessor import TextProcessor, BilingualText
 from PySide6.QtCore import Qt, QTimer
 from PySide6.QtWidgets import (
     QWidget, QSizePolicy, QHeaderView,
-    QDialog, QDialogButtonBox, QMessageBox, QTextEdit,
+    QDialog, QDialogButtonBox, QMessageBox, QTextEdit, QLineEdit,
     QListWidget, QListWidgetItem, QTableWidget, QTableWidgetItem,
     QVBoxLayout, QHBoxLayout
 )
@@ -163,7 +163,25 @@ class BilingualTable(QTableWidget):
         path = self.mainWindow.constructOutputPath()
         self.bilingualText.write(path)
         QMessageBox.information(self.mainWindow, '提示', '完成')
-        
+
+
+class InputFileLineEdit(QLineEdit):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.setAcceptDrops(True)
+
+    def dragEnterEvent(self, event):
+        if event.mimeData().hasUrls():
+            event.acceptProposedAction()
+        else:
+            event.ignore()
+            
+    def dropEvent(self, event):
+        urls = event.mimeData().urls()
+        file_path = urls[0].toLocalFile()
+        self.setText(file_path)
+        event.acceptProposedAction()
+
 
 class ChooseStyleDialog(QDialog):
     def __init__(self, parent: 'MainWindow', subReader: 'SubtitleDisplay'):
