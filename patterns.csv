@@ -157,6 +157,7 @@
 1,\(.+?\(.+?\)\),,Nested parentheses for speakers with ruby
 1,\(\((?P<content>.*?)\)\),\g<content>,
 1,\(.*?\),,
+1,\[.*?\],,
 1,\(,,
 1,\),,
 1,.*：,,Speakers that are unbracketed

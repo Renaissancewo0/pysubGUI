@@ -1,11 +1,12 @@
 # FileDirs
 MKVToolNix
-otherResources/
-main.build/
-main.dist/
-__pycache__/
+otherResources
+main.build
+main.dist
+__pycache__
+Kitauji_pysub
 
 # Setting files
-/config.json
-/test.py
-/find_subtitle.py
+config.json
+test.py
+find_subtitle.py
