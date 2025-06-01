@@ -145,7 +145,9 @@ class SRTReader(Subtitle):
             count = len(list(counts))
             if flag:
                 merged.append(lines[idx].merge(lines[idx+count]))
+                lines[idx:idx+count+1] = []
             idx += count
+        merged.extend(lines)
         return merged
 
     @staticmethod
