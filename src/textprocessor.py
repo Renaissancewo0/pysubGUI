@@ -46,12 +46,14 @@ class BilingualText(Sequence):
             raise TypeError('Only bilingual ASS can be loaded.')
         jpDict = {}
         cnDict = {}
+        # Save the period as keys
         for style in source.styles:
             timeDict = {line.key(): line.text for line in getattr(source, style)}
             if 'jp' in style.lower():
                 jpDict.update(timeDict)
             elif 'cn' in style.lower():
                 cnDict.update(timeDict)
+        # In case there are only-jp or only-cn lines
         keys = set(jpDict.keys()) | set(cnDict.keys())
         for key in sorted(keys, key = lambda x: x[0]):
             jp = jpDict.get(key, '')

@@ -5,7 +5,7 @@ from functools import total_ordering
 
 
 class Timeline:
-    def __init__(self, start: str, end: str, text: str) -> None:
+    def __init__(self, start = 0, end = 0, text: str = '') -> None:
         self._start = Time(start)
         self._end = Time(end)
         self._text = text
@@ -51,8 +51,10 @@ class Timeline:
 
 @total_ordering
 class Time:
-    def __init__(self, timeStamp: str) -> None:
-        if isinstance(timeStamp, Time):
+    def __init__(self, timeStamp = 0) -> None:
+        if isinstance(timeStamp, int):
+            self._time = timeStamp
+        elif isinstance(timeStamp, Time):
             self._time = timeStamp.time
         else:
             self._time = Time.parse(timeStamp)

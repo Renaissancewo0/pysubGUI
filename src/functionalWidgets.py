@@ -64,7 +64,6 @@ class MkvListWidget(QListWidget):
             self.mainWindow.read_subtitle()
             self.mainWindow.extract()
             
-        
     def wait_for_file(self):
         timer = QTimer()
         timer.setInterval(200)
