@@ -96,20 +96,32 @@ class ASSReader(Subtitle):
         
         lines = self.events.split('\n')[2:]
         for line in lines:
-            # if results := re.search(self.timestamp, line):
-            #     start, end, style, text = results.groups()
             try:
                 _, start, end, style, *_, text = line.split(',', maxsplit = 9)
-                # Write the text, along with the timeline, into the dictionary specified by style
+                # Write the timeline into the dictionary specified by style
                 if (stylelist := self.__dict__.get(style)) is not None:
                     line = Timeline(start, end, text)
                     stylelist.append(line)
             except ValueError:
                 pass
 
+        # For monolingual text
         if not self.bilingual:
             for style in self.styles:
-                self.extend(getattr(self, style))
+                period = Timeline().key()
+                text = ''
+                for line in getattr(self, style):
+                    if line.key() == period:
+                        text += f'　{line.text}'
+                    else:
+                        if period != Timeline().key():
+                            self.append(Timeline(*period, text))
+                        period = line.key()
+                        text = line.text
+            else:   # For the last line in the list
+                self.append(Timeline(*period, text))
+            self.sort()
+
 
 class SRTReader(Subtitle):
     timestamp = re.compile(r'(\d{2}:\d{2}:\d{2},\d{3}) --> (\d{2}:\d{2}:\d{2},\d{3})\n(.+?)\n\n', flags = re.DOTALL)
