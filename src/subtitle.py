@@ -145,10 +145,10 @@ class SRTReader(Subtitle):
             count = len(list(counts))
             if flag:
                 merged.append(lines[idx].merge(lines[idx+count]))
-                lines[idx:idx+count+1] = []
+                lines[idx:idx+count+1] = [None] * (count + 1)
             idx += count
         merged.extend(lines)
-        return merged
+        return [x for x in merged if x is not None]
 
     @staticmethod
     def tackleMultilines(text: str) -> str:
